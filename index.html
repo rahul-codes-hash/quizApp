@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div id="app" class="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-6 space-y-8">
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="space-y-6">
+      <h1 class="text-3xl font-bold text-center text-blue-600">Welcome to the Quiz App</h1>
+      <div class="space-y-4">
+        <input type="text" id="username" placeholder="Enter your name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <p id="error-msg" class="text-sm text-red-600 hidden">Username is required.</p>
+        <select id="category" class="w-full px-4 py-2 border rounded-md" required>
+          <option value="">Select Category</option>
+          <option value="general">General Knowledge</option>
+          <option value="javascript">JavaScript</option>
+          <option value="sports">Sports</option>
+        </select>
+        <p id="error-msg-cat" class="text-sm text-red-600 hidden">Category is required.</p>
+        <select id="difficulty" class="w-full px-4 py-2 border rounded-md" required>
+          <option value="">Select Difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <p id="error-msg-diff" class="text-sm text-red-600 hidden">Difficulty level is required.</p>
+        <button id="start-btn" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">Start Quiz</button>
+      </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="hidden space-y-6">
+      <div class="flex justify-between items-center text-sm text-gray-600">
+        <div id="quiz-username"></div>
+        <div id="quiz-timer">Time: 30s</div>
+        <div id="quiz-score">Score: 0</div>
+      </div>
+
+      <div class="h-2 w-full bg-gray-200 rounded overflow-hidden">
+        <div id="progress-bar" class="bg-blue-500 h-full transition-all duration-300" style="width: 0%;"></div>
+      </div>
+
+      <div>
+        <h2 id="quiz-question" class="text-xl font-semibold mb-4">Question text here</h2>
+        <div id="quiz-options" class="space-y-2"></div>
+      </div>
+
+      <button id="next-btn" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">Next</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="hidden text-center space-y-4">
+      <h2 class="text-2xl font-bold text-green-600">Quiz Completed!</h2>
+      <p id="result-score" class="text-xl font-semibold">You scored 8/10</p>
+      <p id="result-feedback" class="text-gray-600">Excellent!</p>
+
+      <div class="flex flex-col space-y-2">
+        <button id="review-btn" class="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Review Answers</button>
+        <button id="restart-btn" class="bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600">Restart Quiz</button>
+        <button id="past-scores-btn" class="bg-gray-600 text-white py-2 rounded-md hover:bg-gray-700">View Past Scores</button>
+      </div>
+    </div>
+
+    <!-- Review Screen -->
+    <div id="review-screen" class="hidden space-y-4">
+      <h2 class="text-xl font-bold text-center text-indigo-600">Review Answers</h2>
+      <div id="review-list" class="space-y-3 max-h-96 overflow-y-auto"></div>
+      <button id="back-to-home-btn" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Back to Home</button>
+    </div>
+
+    <!-- Past Scores Screen -->
+    <div id="past-scores-screen" class="hidden space-y-4">
+      <h2 class="text-xl font-bold text-center text-purple-600">Past Scores</h2>
+      <div id="score-history" class="space-y-2 max-h-96 overflow-y-auto">
+        <!-- Past scores will be injected here -->
+      </div>
+      <button id="clear-scores-btn" class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600">Clear Scores</button>
+      <button id="back-from-scores-btn" class="w-full bg-gray-600 text-white py-2 rounded-md hover:bg-gray-700">Back to Home</button>
+    </div>
+
+  </div>
+
+  <!-- Add your JavaScript at the bottom -->
+  <script src="app.js"></script>
+</body>
+</html>
