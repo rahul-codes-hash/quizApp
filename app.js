@@ -4,10 +4,13 @@ const quizScreen = document.getElementById('quiz-screen');
 const resultScreen = document.getElementById('result-screen');
 const reviewScreen = document.getElementById('review-screen');
 const pastScoresScreen = document.getElementById('past-scores-screen');
+quiz-form
 
 
 // 🎮 Home Screen Elements
 
+const quizForm = document.getElementById('quiz-form');
+const usernameInput = document.getElementById('username');
 const categorySelect = document.getElementById('category');
 const difficultySelect = document.getElementById('difficulty');
 const startBtn = document.getElementById('start-btn');
@@ -44,37 +47,67 @@ const clearScoresBtn = document.getElementById('clear-scores-btn');
 const backFromScoresBtn = document.getElementById('back-from-scores-btn');
 
 
-startBtn.addEventListener('click' , (e) => {
-    const usernameInput = document.getElementById('username');
-    const userIp = usernameInput.value.trim();
-    if(!userIp){
-        errorMsg.classList.remove('hidden');
-    
-    }
+quizForm.addEventListener( 'submit' , () => {
 
-    errorMsg.classList.add('hidden');
-
-    if( userIp == "" || categorySelect.value == "" || difficultySelect.value == "" ){
-        e.preventDefault();
-        console.log('preventDefault working')
-    };
-
-})
-
-categorySelect.addEventListener( 'change' , (e) => {
-    if( e.target.value !== ""){
+        // Remove all previous error states
+        errorMsg.classList.add('hidden');
         errorMsgCat.classList.add('hidden');
-    }else {
-        errorMsgCat.classList.remove('hidden');
-
-    }
-})
-
-difficultySelect.addEventListener( 'change' , (e) => {
-    if( e.target.value !== ""){
         errorMsgDiff.classList.add('hidden');
-    }else {
-        errorMsgDiff.classList.remove('hidden');
 
+        let isValid = true;
+
+    if( usernameInput.value.trim() == "" ){
+        errorMsg.classList.remove('hidden');
     }
+
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// startBtn.addEventListener('click' , (e) => {
+//     const usernameInput = document.getElementById('username');
+//     const userIp = usernameInput.value.trim();
+//     if(!userIp){
+//         errorMsg.classList.remove('hidden');
+    
+//     }
+
+//     errorMsg.classList.add('hidden');
+
+//     if( userIp == "" || categorySelect.value == "" || difficultySelect.value == "" ){
+//         e.preventDefault();
+//         console.log('preventDefault working')
+//     };
+
+// })
+
+// categorySelect.addEventListener( 'change' , (e) => {
+//     if( e.target.value !== ""){
+//         errorMsgCat.classList.add('hidden');
+//     }else {
+//         errorMsgCat.classList.remove('hidden');
+
+//     }
+// })
+
+// difficultySelect.addEventListener( 'change' , (e) => {
+//     if( e.target.value !== ""){
+//         errorMsgDiff.classList.add('hidden');
+//     }else {
+//         errorMsgDiff.classList.remove('hidden');
+
+//     }
+// })
+
