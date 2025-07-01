@@ -1,11 +1,11 @@
+import {quizData} from './questions.js'
+
 // 🧱 Screen Sections
 const homeScreen = document.getElementById('home-screen');
 const quizScreen = document.getElementById('quiz-screen');
 const resultScreen = document.getElementById('result-screen');
 const reviewScreen = document.getElementById('review-screen');
 const pastScoresScreen = document.getElementById('past-scores-screen');
-quiz-form
-
 
 // 🎮 Home Screen Elements
 
@@ -47,7 +47,9 @@ const clearScoresBtn = document.getElementById('clear-scores-btn');
 const backFromScoresBtn = document.getElementById('back-from-scores-btn');
 
 
-quizForm.addEventListener( 'submit' , () => {
+quizForm.addEventListener( 'submit' , (e) => {
+
+    e.preventDefault();
 
         // Remove all previous error states
         errorMsg.classList.add('hidden');
@@ -58,8 +60,67 @@ quizForm.addEventListener( 'submit' , () => {
 
     if( usernameInput.value.trim() == "" ){
         errorMsg.classList.remove('hidden');
+        isValid = false;
     }
 
+    if( categorySelect.value == "" ){
+        errorMsgCat.classList.remove('hidden');
+        isValid = false;
+    }
+
+    if( difficultySelect.value == "" ){
+        errorMsgDiff.classList.remove('hidden');
+        isValid = false;
+    }
+
+    if(!isValid){
+        alert('all fields are required');
+        return
+    }
+
+    // get values from form inputs
+    let currentUser = {username: usernameInput.value.trim(),
+                        category: categorySelect.value,
+                        difficulty: difficultySelect.value
+                       };
+                       
+    // store them in local storage
+    sessionStorage.setItem('currentUser' , JSON.stringify(currentUser) );
+    const now = JSON.parse(sessionStorage.getItem('currentUser'))
+
+    // switch to quiz screen 
+    homeScreen.classList.add('hidden');
+    quizScreen.classList.remove('hidden');
+
+                    
+})
+
+usernameInput.addEventListener( 'input' , () => {
+    if( usernameInput.value.trim() == "" ){
+        errorMsg.classList.remove('hidden');
+    } else if( usernameInput.value.trim() !== "" ){
+        errorMsg.classList.add('hidden');
+    }
+})
+
+categorySelect.addEventListener( 'change' , () => {
+    if( categorySelect.value == "" ){
+        errorMsgCat.classList.remove('hidden');
+    } else if( categorySelect.value !== "" ){
+        errorMsgCat.classList.add('hidden');
+    }
+})
+
+difficultySelect.addEventListener( 'change' , () => {
+    if( difficultySelect.value == "" ){
+        errorMsgDiff.classList.remove('hidden');
+    } else if( difficultySelect.value !== "" ){
+        errorMsgDiff.classList.add('hidden');
+    }
+})
+
+quizData.forEach( ( question , index ) => {
+    
 })
 
 
@@ -75,39 +136,4 @@ quizForm.addEventListener( 'submit' , () => {
 
 
 
-
-// startBtn.addEventListener('click' , (e) => {
-//     const usernameInput = document.getElementById('username');
-//     const userIp = usernameInput.value.trim();
-//     if(!userIp){
-//         errorMsg.classList.remove('hidden');
-    
-//     }
-
-//     errorMsg.classList.add('hidden');
-
-//     if( userIp == "" || categorySelect.value == "" || difficultySelect.value == "" ){
-//         e.preventDefault();
-//         console.log('preventDefault working')
-//     };
-
-// })
-
-// categorySelect.addEventListener( 'change' , (e) => {
-//     if( e.target.value !== ""){
-//         errorMsgCat.classList.add('hidden');
-//     }else {
-//         errorMsgCat.classList.remove('hidden');
-
-//     }
-// })
-
-// difficultySelect.addEventListener( 'change' , (e) => {
-//     if( e.target.value !== ""){
-//         errorMsgDiff.classList.add('hidden');
-//     }else {
-//         errorMsgDiff.classList.remove('hidden');
-
-//     }
-// })
 
