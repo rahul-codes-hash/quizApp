@@ -1,0 +1,136 @@
+Absolutely — that's the best way to learn! Let's break the quiz functionality into small, **testable, logical steps**, each building on the last.
+
+We’ll go step-by-step, testing one feature at a time before moving forward.
+
+---
+
+## 🧩 Step-by-Step Plan to Build the Quiz (1 Feature at a Time)
+
+---
+
+### ✅ **STEP 1: Render the First Question**
+
+**Goal**: When the page loads (or after clicking "Start"), show only the **first question and its 4 options**.
+
+#### 🔍 What to do:
+
+1. Create a `currentQuestionIndex` variable (starting at 0).
+2. Access the first question object from your array using that index.
+3. Render:
+
+   * The question text into a DOM element (e.g., `#quiz-question`)
+   * Each option as a radio button in a container (`#quiz-options`)
+4. Test by refreshing the page — confirm that only the first question and 4 radio buttons appear.
+
+---
+
+### ✅ **STEP 2: Handle Option Selection**
+
+**Goal**: Let the user select one of the options.
+
+#### 🔍 What to do:
+
+1. Group the radio buttons with the same `name` attribute so only one can be selected at a time.
+2. On clicking the "Next" button, check which option is selected using `querySelector`.
+3. Confirm in the console that the selected option index is being captured.
+
+✅ **Test**: Click a few different options and log the selected value to ensure it's working.
+
+---
+
+### ✅ **STEP 3: Move to Next Question**
+
+**Goal**: When "Next" is clicked, show the next question.
+
+#### 🔍 What to do:
+
+1. Increment `currentQuestionIndex`.
+2. Call the same rendering logic as in Step 1, but now for the new question.
+3. Clear old options before re-rendering.
+
+✅ **Test**: Click "Next" repeatedly — each question should appear one after the other.
+
+---
+
+### ✅ **STEP 4: Track User Answers**
+
+**Goal**: Record which option the user selected for each question.
+
+#### 🔍 What to do:
+
+1. Create a `userAnswers` array.
+2. When a user selects an answer and clicks "Next", store the selected index for that question into `userAnswers[currentQuestionIndex]`.
+3. For unanswered questions (e.g., timeout or skip), store `null`.
+
+✅ **Test**: Log the `userAnswers` array after each click to confirm it's storing values correctly.
+
+---
+
+### ✅ **STEP 5: Add a 10-Second Timer Per Question**
+
+**Goal**: Each question should have a 10-second countdown.
+
+#### 🔍 What to do:
+
+1. Use `setInterval` to count down every second.
+2. Display remaining time in a `#quiz-timer` element.
+3. When the timer reaches 0:
+
+   * Store `null` as the answer
+   * Move to the next question
+   * Reset the timer
+
+✅ **Test**: Let the timer run out — make sure it auto-advances and the answer is recorded as `null`.
+
+---
+
+### ✅ **STEP 6: Score the Quiz**
+
+**Goal**: Count how many answers were correct.
+
+#### 🔍 What to do:
+
+1. After the last question, loop through `userAnswers` and compare each with the correct `answer` from your `questionsArray`.
+2. Count correct answers into a `score` variable.
+3. Display the final score in a result screen (`#result-screen`).
+
+✅ **Test**: Answer a few questions correctly, finish the quiz, and check if the score is accurate.
+
+---
+
+### ✅ **STEP 7: Show Review Screen**
+
+**Goal**: Let the user see all questions with:
+
+* Their selected answer
+* The correct answer
+* Visual indicators
+
+#### 🔍 What to do:
+
+1. Create a new section (`#review-container`) to hold review blocks.
+2. Loop through each question:
+
+   * Show the question and options
+   * Highlight the correct answer in **green**
+   * Highlight the user’s incorrect answer in **red**
+3. Add a button to go to this screen after finishing the quiz.
+
+✅ **Test**: Complete a quiz and click “Review” — verify correct/incorrect indicators match your choices.
+
+---
+
+## ✅ Optional Next Steps (After Core Is Working)
+
+These are more advanced — do these after you're comfortable with the above:
+
+* 🔁 Add a "Restart Quiz" button that resets everything
+* 📊 Add a progress bar (% complete)
+* 💾 Store past scores in `localStorage`
+* 📱 Make it mobile-friendly
+* 🧠 Shuffle questions or options
+* ⏸ Add pause/resume for the timer
+
+---
+
+Would you like help breaking **Step 1** down further into micro-steps so you can begin immediately?
